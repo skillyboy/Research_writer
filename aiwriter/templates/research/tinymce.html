@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '' %}css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    
+    <script src="https://unpkg.com/@grammarly/editor-sdk?clientId=client_8nBaVqWaRFzEMWPoWXhtEd"></script>
+    <script src="https://cdn.tiny.cloud/1/grjue6zgt2kiw5ryvt4z271o7w52oofnhegmxvtgpgwo2hho/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+    
+            selector: 'textarea#export',
+            toolbar: 'export pagebreak | formatselect fontselect fontsizeselect bold italic underline strikethrough forecolor backcolor subscript superscript | alignleft aligncenter alignright alignjustify indent outdent rtl ltr | bullist numlist checklist | emoticons image table link hr charmap',
+            height: 500,
+            toolbar_mode: 'sliding',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+            
+            toolbar: "undo redo print spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image addcomment showcomments  | alignleft aligncenter alignright alignjustify lineheight | checklist bullist numlist indent outdent | removeformat",
+            height: '600px',
+            toolbar_sticky: true,
+            icons: 'thin',
+            autosave_restore_when_empty: true,
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'john.doe', 
+            
+        });
+    </script>
+</head>
+<body>
+    <section id="tinymce-editor" class="editor-section tabcontent animate__animated animate__fadeInRight">
+        <form method="POST"  action="" >
+        {%csrf_token%}  
+            <button id="btn-save-editor">Back</button>
+            <button id="btn-save-editor">Update</button>
+
+            <grammarly-editor-plugin
+                config.documentDialect="british"
+                config.suggestionCategories.oxfordComma="on">
+                <textarea id="export" name="body">
+                    {{request.session.body}}
+                </textarea>
+            </grammarly-editor-plugin>
+        </form>
+    </section>
+</body>
+</html>

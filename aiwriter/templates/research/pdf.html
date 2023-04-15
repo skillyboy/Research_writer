@@ -1,0 +1,9 @@
+<div id="editor-container">
+    {% if file %}
+        <div id="pdf-container">
+            {{ file.pdf.url }}
+        </div>
+    {% else %}
+        <textarea name="researchEditor" id="editor-textarea" class="rEditor d-none"> </textarea>
+    {% endif %}
+</div>

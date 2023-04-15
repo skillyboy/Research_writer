@@ -1,0 +1,49 @@
+{% extends "research/base.html" %}
+
+{% block content %}
+    <h1>Collaboration Chat</h1>
+    <div id="chat-messages">
+        {% for message in messages %}
+            <div class="chat-message">
+                <p>{{ message.author.username }}:</p>
+                <p>{{ message.text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <form id="chat-form">
+        {% csrf_token %}
+        <input type="text" id="message-input" name="message-input">
+        <button type="submit" id="send-button">Send</button>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        let chatSocket = new WebSocket(
+            'ws://' + window.location.host +
+            '/ws/collaboration/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            let data = JSON.parse(e.data);
+            let message = data['message'];
+            let author = message['author'];
+            let text = message['text'];
+            let messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message');
+            messageElement.innerHTML = '<p>' + author + ':</p><p>' + text + '</p>';
+            let chatMessages = document.querySelector('#chat-messages');
+            chatMessages.appendChild(messageElement);
+        };
+
+        document.querySelector('#chat-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let messageInputDom = document.querySelector('#message-input');
+            let message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInputDom.value = '';
+        });
+    </script>
+{% endblock %}

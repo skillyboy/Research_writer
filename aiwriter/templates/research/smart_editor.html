@@ -1,0 +1,413 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Editor</title>
+
+    <link rel="stylesheet" href="{% static '' %}css/style.css">
+    <!-- FONT AWESOME    -->
+    <link rel="stylesheet" href="{% static '' %}css/fontawesome.css">
+</head>
+{% if messages %}
+    {% for item in messages %}
+      <div style="color: white; padding:2rem; background:#35B7FF;font-size:1rem; font-weight:700;text-align:center;">{{item}}</div>
+    {% endfor %}
+{% endif %}
+<body>
+    <br>
+    <nav class="navbar fixed-top menu" aria-label="Fifth navbar example">
+        <div class="container-fluid">
+            <a href="{% url 'Editchapter' research_id %}"><button class="btn btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Go back</button></a>
+            <!-- <span class="auto-w">Auto-Writing &quest;</span> -->
+            <a href="#" class="navbar-brand fw-bold">ProjectLogo</a>
+
+            <span class="rounded-pill"><i class="fas fa-rotate"></i> 200 </span>
+          
+            <button 
+                class="navbar-toggler" 
+                type="button" data-bs-toggle="collapse"
+                data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" 
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <!-- <div class="row  "> -->
+            <!-- SIDEBAR SECTION  -->
+            <div class="col-lg-2 pt-5 p-3   sidebar-smart  collapse navbar-collapse shadow" id="sidebarMenu">
+                <span>All Tools</span>
+                <input type="text" class="form-control mt-4 search-t" placeholder="Search tool...">
+
+                <ul class="nav nav-pills flex-column mb-auto ">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link " aria-current="page">
+                            <i class="fas fa-home"></i>
+                            <span> Dashboard </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-gear"></i>
+                            <span>All Tools</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-book"></i>
+                            <span>My Content</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="article-generator.html" class="nav-link link-dark">
+                            <i class="fas fa-scroll"></i>
+                            <span>Article Generator</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-message"></i>
+                            <span>Chat</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                          <i class="fas fa-file-pen"></i>
+                          <span>Smart Editor</span> 
+                        </a>
+                      </li>
+                    <li>
+                        <a href="search-page.html" class="nav-link link-dark">
+                            <i class="fas fa-rotate"></i>
+                            <span>Search Resources</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-book"></i>
+                            <span>My Content</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="article-generator.html" class="nav-link link-dark">
+                            <i class="fas fa-scroll"></i>
+                            <span>Article Generator</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-message"></i>
+                            <span>Chat</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-image"></i>
+                            <span>All Images</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="search-page.html" class="nav-link link-dark">
+                            <i class="fas fa-rotate"></i>
+                            <span>Search Resources</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <hr>
+                <img src="./img/nodp.png" alt="" width="32" height="32" class="rounded-circle ">
+            </div>
+            <br><br><br>
+
+
+            <!-- MAIN MENU SECTION  -->
+            <!-- <main class="col-lg-12 px-3 main-smart-section mt-5"> -->
+                <div class="row ">
+                    <div class="col-lg-8 col-md-8 col editor-section shadow">
+                        
+                        
+                        {% if file.pdf %}
+                        <select name="editorType" id="editor-type" class="form-select mb-2">
+                            <option selected>Click to highlight content</option>
+                            <option value="iframe">text area</option>
+                            <option value="textarea" >pdf container</option>
+                            <option value="textarea" >Chapter</option>
+
+                        </select>
+                        <div id="editor-container">
+                            <textarea rows="25" name="researchEditor" id="editor-textarea" class="rEditor">{{content}}</textarea>
+                        </div>
+                        
+                        <div id="pdf-container" style="height: 700px; overflow: auto;"></div>
+                        
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
+                        <script>
+                          // Load PDF file and render it in the container
+                          pdfjsLib.getDocument('{{ file.pdf.url }}').promise.then(function(pdf) {
+                            var totalPages = pdf.numPages;
+                          
+                            for (var pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+                              pdf.getPage(pageNumber).then(function(page) {
+                                var canvas = document.createElement('canvas');
+                                var ctx = canvas.getContext('2d');
+                                var viewport = page.getViewport({ scale: 1.5 });
+                                canvas.height = viewport.height;
+                                canvas.width = viewport.width;
+                                page.render({ canvasContext: ctx, viewport: viewport });
+                                document.querySelector('#pdf-container').appendChild(canvas);
+                              });
+                            }
+                          });
+                          
+                        </script>
+                        
+                        <script>
+                            var editorTypeSelect = document.querySelector('#editor-type');
+                            var editorContainer = document.querySelector('#editor-container');
+                            var textarea = document.querySelector('#editor-textarea');
+                            var pdfContainer = document.querySelector('#pdf-container');
+                            
+                            // Show PDF container by default
+                            pdfContainer.style.display = 'block';
+                            textarea.style.display = 'none';
+                          
+                            editorTypeSelect.addEventListener('change', function() {
+                              if (editorTypeSelect.value === 'iframe') {
+                                pdfContainer.style.display = 'none';
+                                textarea.style.display = 'block';
+                              } else if (editorTypeSelect.value === 'textarea') {
+                                textarea.style.display = 'none';
+                                pdfContainer.style.display = 'block';
+                              }
+                            });
+                          </script>
+
+                        {% elif file.url %}
+                        <select name="editorType" id="editor-type" class="form-select mb-2">
+                            <option selected>Click to highlight content</option>
+                            <option value="iframe">Article</option>
+                            <option value="textarea" >Chapter</option>
+                        </select>
+                        <iframe src="{{ file.url }}" width="100%" height="900px"></iframe>
+
+                        {% elif file.docx %}
+                        <select name="editorType" id="editor-type" class="form-select mb-2">
+                            <option selected>Click to highlight content</option>
+                            <option value="iframe">Document</option>
+                            <option value="textarea" >Chapter</option>
+                        </select>
+                        <textarea name="researchEditor" id="editor-textarea" class="rEditor d-none">
+                            {{content}}
+                        </textarea>
+
+                        {% endif %}
+                    </div>
+                    
+                    
+
+                    
+                    
+                    <div class="col-lg-4 col-md-4 ">
+                        <select name="note_or_chat" id="note_or_chat" class="form-select mb-2">
+                            <option value="chat" selected>Chat</option>
+                            <option value="note" title="Add content to help AI streamline research">Saved Note</option>
+                        </select>
+                        
+                        <div id="chat-container">
+                            <div id="chat-box" class="d-none">
+                                <div class="chat-header bg-primary">
+                                    <h5>Chat with AI</h5>
+                                </div>
+                                <form method="post">
+                                {% csrf_token %}
+                                <div class="chat-history">
+                                    <div class="chat-message user-message">
+                                    <p>Sure, what's your question?</p>
+                                    </div>
+
+                                    <div class="chat-message bot-message">
+                                    <p>What's your name?</p>
+                                    <button type="button" class="copy-message" data-message="What's your name?">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                    <button href="/download-chat-history" download>
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
+                                    </div>
+                                </div>
+
+                                <div class="chat-input">
+                                    <textarea name="user_input" placeholder="Type your message here..."></textarea>
+                                    <button type="submit" name="send_message">Send</button>
+                                </div>
+                                </form>
+
+                            </div>
+                            
+                            <div id="note-box" class="d-none note-box">
+                            <!-- <textarea cols="30" rows="10"> -->
+                                <div class="accordion mb-4" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Keywords
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <input type="text" class="form-control my-2" placeholder="Add keyword">
+                                                <button class="btn  btn-primary mb-2 w-100">Calculate SEO Score</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                Pliagiarism Checker
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                A plagiarism rate below 5% is really good, between 5 and 10% is considered to be
+                                                reasonable.
+                                                <button class="btn  btn-primary mb-2 w-100">Check Pliagiarism</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                Content Analysis
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <strong>This is the third item's accordion body.</strong> It is hidden HTML transition
+                                                does limit overflow.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- </textarea> -->
+                            </div>
+
+                            <button type="submit" name="save_conversation" class="btn btn-primary w-100">Save</button>
+                        </div>
+                        
+                        <script>
+                            const noteOrChatSelect = document.getElementById('note_or_chat');
+                            const chatBox = document.getElementById('chat-box');
+                            const noteBox = document.getElementById('note-box');
+                            
+                            chatBox.classList.remove('d-none');
+                            
+                            noteOrChatSelect.addEventListener('change', () => {
+                              chatBox.classList.toggle('d-none', noteOrChatSelect.value === 'note');
+                              noteBox.classList.toggle('d-none', noteOrChatSelect.value === 'chat');
+                            });
+                        </script>
+                        
+                        
+
+                        <div class="row text-center mt-4 fs-4">
+                            <div class="col-6">
+                                <h6>WORDS</h6>
+                                <p>1</p>
+                            </div>
+                            <div class="col-6">
+                                <h6>HEADINGS</h6>
+                                <p>1</p>
+                            </div>
+                        </div>
+                        <div class="row text-center my-2 fs-4">
+                            <div class="col-6">
+                                <h6>PARAGRAPHS</h6>
+                                <p>0</p>
+                            </div>
+                            <div class="col-6">
+                                <h6>LINKS</h6>
+                                <p>0</p>
+                            </div>
+        
+                        </div>
+        
+                        <!-- <div class="accordion mb-4" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Keywords
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <input type="text" class="form-control my-2" placeholder="Add keyword">
+                                        <button class="btn  btn-primary mb-2 w-100">Calculate SEO Score</button>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Pliagiarism Checker
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        A plagiarism rate below 5% is really good, between 5 and 10% is considered to be
+                                        reasonable.
+                                        <button class="btn  btn-primary mb-2 w-100">Check Pliagiarism</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Content Analysis
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <strong>This is the third item's accordion body.</strong> It is hidden HTML transition
+                                        does limit overflow.
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            <!-- </main> -->
+        <!-- </div> -->
+    </div>
+
+    <script src="./assets/ckeditor/ckeditor.js"></script>
+    <script>
+        // CKEDITOR.replace('researchEditor');
+    </script>
+    <script src="{% static '' %}js/bootstrap.bundle.min.js"></script>
+    <script src="{% static '' %}js/script.js"></script>
+</body>
+{% endblock content %}
+
+</html>

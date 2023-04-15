@@ -1,0 +1,443 @@
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paraphrase</title>
+  <link rel="stylesheet" href="{% static '' %}css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- FONT AWESOME    -->
+  <link rel="stylesheet" href="{% static '' %}css/fontawesome.css">
+
+
+  <style>
+    .input-container {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- <h1>New Project</h1> -->
+  <nav class="navbar navbar-expand-lg fixed-top menu " aria-label="Fourth navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">ProjectLogo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
+        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Plans & Pricings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Chrome Extensions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">Plagiarism Credits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">API</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">Help Center</a>
+          </li>
+          <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+        </ul>
+        <!-- <a href="" class="btn btn-primary"><i class="fas fa-plus"></i> Create Content</a> -->
+        <button  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSignin"><i class="fas fa-plus"></i> Create Content</button>
+        <img src="./img/nodp.png" alt="" width="32" height="32" class="rounded-circle mx-2 me-2">
+      </div>
+    </div>
+  </nav>
+
+
+<div class="container-fluid">
+  <div class="row ">
+    <!-- ====================================================================================================== -->
+
+      <!-- SIDEBAR SECTION  -->
+      <div class=" col-md-3 col-lg-2 pt-5 p-3  fixed-top side-menu">
+        <a href="/" class="d-flex align-items-center mt-5 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <span class="fs-5">1,500 Words Left</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link " aria-current="page">
+              <i class="fas fa-home"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'alltools' %}" class="nav-link link-dark">
+              <i class="fas fa-gear"></i>
+              All Tools
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link link-dark">
+              <i class="fas fa-book"></i>
+              My Content
+            </a>
+          </li>
+          <hr>
+          <li>
+            <a href="article-generator.html" class="nav-link active">
+              <i class="fas fa-scroll"></i>
+              Article Generator
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'collaboration' %}" class="nav-link link-dark">
+              <i class="fas fa-message"></i>
+              Collaborations
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link link-dark">
+              <i class="fas fa-image"></i>
+              All Images
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'search_resources' %}" class="nav-link link-dark">
+              <i class="fas fa-rotate"></i>
+              Search Resources
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="./img/nodp.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>User</strong>
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- MAIN MENU SECTION  -->
+      
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 article-main-sect">
+        <p class="mx-auto mb-0 text-center"> <h5><strong>PROJECT TITLE: </strong>{{research}}</h5> </p>
+
+        <br>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            {% for chapter in chapters %}
+            <li class="page-item m-1"><a class="page-link" title="{{chapter.name}}" href="?chapter_id={{chapter.id}}">{{forloop.counter}}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+        
+
+        <!-- MODAL SECTION  -->
+        <!-- Small modal -->
+        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+              <div class="modal-body text-dark" style="overflow-y: auto; max-height: 500px;">
+
+                <form id="add-chapter-form">
+                  {% csrf_token %}
+
+                  <div id="chapter-box">
+                    <div class="form-group">
+                      <label for="name_input">Add Chapter To Your Research:</label>
+                      <input type="text" class="form-control" id="name" name="name" > <!-- Add the required attribute -->
+                      <input type="hidden" id="research" name="research" value="{{research.id}}">
+                    </div>
+                    <button type="submit" id="addindexbtn" class="btn btn-primary">Add Chapter</button>
+                    {% for chapter in chapters %}
+                    <hr>
+                    <div class="modal-body">
+                      <h5>{{ chapter.name|title }}</h5>
+                      <p>
+                        <a href="#" class="tooltip-test" title="Delete {{ chapter.name|title }}" onclick="deleteChapter({{ chapter.id }})">Delete <i class="fas fa-trash-alt"></i></a>
+                        <a href="#" class="tooltip-test rename" title="Rename">Rename <i class="fas fa-pencil-alt"></i></a>
+                      </p>
+                      <div class="input-container" style="display: none;">
+                        <input type="text" value="{{ chapter.name|title }}" class="rename-input">
+                        <button class="btn btn-primary rename-btn">Save</button>
+                      </div>
+                      <p><small>This is a description of the chapter</small></p>
+                    </div>
+                    {% endfor %}
+                    
+                  </div>
+                  <script>
+                    function deleteChapter(chapterId) {
+                      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                    
+                      if (confirm('Are you sure you want to delete this chapter?')) {
+                        axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+                    
+                        axios.delete(`delete_chapter/${chapterId}/`)
+                          .then(response => {
+                            const data = response.data;
+                    
+                            if (data.deleted) {
+                              alert(`Chapter deleted successfully!`);
+                              // Reload the page to remove the deleted chapter from the list
+                              location.reload();
+                            } else {
+                              alert('Failed to delete chapter!');
+                            }
+                          })
+                          .catch(error => {
+                            console.error(error);
+                            alert('An error occurred while deleting chapter!');
+                          });
+                      }
+                    }
+                    
+                  </script>
+                  
+                <script>
+                    const chapterForm = document.querySelector('#add-chapter-form');
+                    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                  
+                    chapterForm.addEventListener('submit', function(event) {
+                      event.preventDefault();
+                  
+                      const formData = new FormData(this);
+                  
+                      axios.defaults.headers.common['X-CSRFToken'] = csrfToken; // Set the CSRF token in the headers
+                  
+                      axios.post('{% url "addchapter" %}', formData)
+                        .then(response => {
+                          const data = response.data;
+                  
+                          if (data.created) {
+                            alert(`Chapter '${formData.get('name')}' created successfully!`);
+                            // Reload the page to show the new chapter in the list
+                            location.reload();
+                          } else {
+                            alert('Failed to create chapter!');
+                          }
+                        })
+                        .catch(error => {
+                          console.error(error);
+                          alert('An error occurred while creating chapter!');
+                        });
+                    });
+                  </script>
+
+                    
+              
+
+                  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- end of modal -->
+      <!-- MODAL SECTION ENDS  -->
+        <hr>
+{% if chapters %}
+        
+        <div class="row add-section">
+
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+     
+            
+            <label class="btn btn-primary">
+              <button><i class="fas fa-edit"></i> Write Content</button>
+            </label>
+            <!-- <label class="btn btn-secondary">
+              <a href="{% url 'researcheditor' research_id=research.id %}">
+              <button><i class="fas fa-scroll"> </i> View</button>
+              </a>
+            </label> -->
+            <label class="btn btn-secondary">
+              <a href="{% url 'Paraphrasing' research_id=research.id %}">
+              <button><i class="fas fa-rotate"></i> Paraphrasing </button>
+              </a>
+            </label>
+            
+          </div>
+ 
+        </div>
+        <!-- CHAPTER HEADER -->
+          
+          
+        <!-- ========================== Chapter Content Begins ============================================================= -->
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample" >
+          <div class="card-body">
+            <div class="list-group">
+              
+              {% if topics %}
+                <div id="topic-list-container" class="list-group">
+                  {% for topic in topics %}
+
+                    {% if topic.contents.all %}
+                      <div class="saved-content-container" data-topicid="{{ topic.id }}">
+                        {% for content in topic.contents.all %}
+                          <div class="card mb-3">
+                            <div class="card-body">
+                              <input type="hidden" class="contentid" name="contentid" value="{{content.id}}">
+                              <div class="content">{{ content.content }}</div>
+                              <div class="text-right mt-2">
+                                <button type="button" class="btn btn-danger delete-btn" data-contentid="{{ content.id }}"><i class="fas fa-trash"></i> Paraphrase</button>
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    <hr>
+                  {% endfor %}
+                </div>
+              {% else %}
+              <p>
+                <h5>Add An Outline To Continue </h5>
+              </p>
+              {% endif %}
+                        
+              <script>
+                // Get the CSRF token
+                const Token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+              
+                // Add event listener to delete buttons
+                const deleteButtons = document.querySelectorAll('.delete-btn');
+                deleteButtons.forEach(button => {
+                  button.addEventListener('click', () => {
+                    const contentId = button.dataset.contentid;
+                    axios.defaults.headers.common['X-CSRFToken'] = Token; // Set the CSRF token in the headers
+                    axios.delete('{% url "deletecontent" %}', { data: { contentid: contentId } })
+                      .then(response => {
+                        const status = response.data.status;
+                        if (status === 'success') {
+                          // Remove the deleted content from the page
+                          const contentContainer = button.closest('.saved-content-container');
+                          const deletedContent = contentContainer.querySelector(`[data-contentid="${contentId}"]`);
+                          deletedContent.remove();
+                        } else {
+                          alert('Failed to delete content!');
+                        }
+                      })
+                      .catch(error => {
+                        console.error(error);
+                        alert('An error occurred while deleting content!');
+                      });
+                  });
+                });
+              </script>
+              
+            </div>
+          </div>
+        </div>
+        
+        <script>
+          const savechapbtns = document.querySelectorAll('.savechapbtn');
+          savechapbtns.forEach((savechapbtn) => {
+            const contentTextarea = savechapbtn.closest('.topicform').querySelector('.content');
+            savechapbtn.disabled = true; // disable save button by default
+            contentTextarea.addEventListener('input', () => {
+              savechapbtn.disabled = (contentTextarea.value.trim() === ''); // enable save button if there is some input
+            });
+            savechapbtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              const topicform = savechapbtn.closest('.topicform');
+              const content = contentTextarea.value.trim();
+              if (content === '') {
+                alert('Content cannot be empty');
+                return;
+              }
+              const formData = new FormData(topicform);
+              const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+              formData.append('csrfmiddlewaretoken', csrfToken);
+              axios.post('/savetopicform/', formData)
+                .then((resp) => {
+                  if (resp.data.status === 'success') {
+                    savechapbtn.textContent = 'Saved';
+                    savechapbtn.classList.remove('btn-secondary');
+                    savechapbtn.classList.add('btn-success');
+                    savechapbtn.disabled = true;
+                    contentTextarea.value = ''; // clear the text area
+                  }
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            });
+          });
+          
+          </script>
+
+
+
+        <!-- ========================== Chapter Content Ends =======================================            ============================ -->
+        <hr>
+        <div class="row menu-button fixed-bottom">
+          <button class="btn btn-primary shadow ">Click to view Menu <i class="fas fa-chevron-up"></i></button>
+        </div>
+      </main>
+    <!-- ====================================================================================================== -->
+  </div>
+</div>
+
+{% endif %}
+
+<script>
+  // Get the elements
+  const renameBtns = document.querySelectorAll('.rename');
+  const inputContainers = document.querySelectorAll('.input-container');
+  
+  // Add click event listeners to toggle the visibility of the input containers
+  renameBtns.forEach((renameBtn, index) => {
+    renameBtn.addEventListener('click', () => {
+      // Toggle the "input-container" visibility
+      inputContainers[index].style.display = inputContainers[index].style.display === 'none' ? 'block' : 'none';
+    });
+  });
+</script>
+<!-- ====================================================================================================== -->
+
+  <script src="{% static '' %}js/bootstrap.bundle.min.js"></script>
+  <script src="{% static '' %}js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+  <!-- Semantic UI -->
+<!-- Import jQuery and Semantic UI CSS and JS files -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<!-- ====================================================================================================== -->
+
+
+
+</body>
+
+</html>
+
+{% endblock content %}

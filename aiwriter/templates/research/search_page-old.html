@@ -1,0 +1,117 @@
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search Page</title>
+  <link rel="stylesheet" href="{% static '' %}css/style.css">
+  <!-- FONT AWESOME    -->
+  <link rel="stylesheet" href="{% static '' %}css/fontawesome.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top menu" aria-label="Fourth navbar example">
+    <div class="container-fluid ">
+      <a class="navbar-brand fw-bold" href="#" >ProjectLogo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
+        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <div class=" me-auto search-sect" >
+          <form action="'#">
+            <input type="search" class="form-control rounded-pill" id="searchbar" placeholder="Search" aria-label="Search">
+              <button type="button" class="close"><i class="fas fa-close "></i></button> 
+              <button type="button" class="search-i"><i class="fas fa-search "></i></button> 
+          </form>
+        </div>
+        <div class="m-4">
+            <!-- <a href="" class="btn btn-primary"><i class="fas fa-plus"></i> Create Content</a> -->
+            <button type="button" class="btn btn-primary rounded-pill m-2 py-2 px-5 login-btn" >Log In</button>
+            <button type="button"  class="btn btn-primary rounded-pill m-2 py-2 px-5" >Sign Up</button>
+            <img src="./img/nodp.png" alt="" width="32" height="32" class="rounded-circle mx-2 me-2">
+        </div>
+      </div>
+    </div>
+  </nav>
+  <body>
+             
+      <main class="col-md-12 ms-sm-auto col-lg-12 px-md-4 search-pg">
+        <div class="row my-3 ">
+          <div class="row top">
+
+            <!-- <div class="me-auto search-sect" >
+              <form action="'#">
+                <input type="search" class="form-control rounded-pill" id="searchbar" placeholder="Search" aria-label="Search">
+              </form>
+              <button class="btn btn-primary search-i">Search</button>
+            </div> -->
+
+
+            <div class="col-lg-8 search-result shadow">
+              <a href="">How to write Better: 15 ways to Improve your writing skills | Write</a>
+              <p>Writer.com > blog > how-to-write-better place to start. Give them a try</p>
+              <p>One of the best, passive ways of becoming a better writer is to need a book (Stephen king's work
+                makes for great binge reading). Not int books? Long-form business writings, graphic novels, or short...</p>
+                <button class="btn btn-primary">View</button>
+                <button class="btn btn-primary">Summarize</button>
+                <button class="btn btn-primary">Remove</button>
+            </div>
+            <br>
+            <div class="col-lg-8 search-result shadow">
+              <a href="">How to write Better: 15 ways to Improve your writing skills | Write</a>
+              <p>Writer.com > blog > how-to-write-better place to start. Give them a try</p>
+              <p>One of the best, passive ways of becoming a better writer is to need a book (Stephen king's work
+                makes for great binge reading). Not int books? Long-form business writings, graphic novels, or short...</p>
+                <button class="btn btn-primary">View</button>
+                <button class="btn btn-primary">Read summary</button>
+                <button class="btn btn-primary">Remove</button>
+                <button class="btn btn-primary">Added</button>
+            </div>
+
+            <div class="col-lg-3 col-md-6 m-2 top-info shadow">
+              <h5>Summary<span class="mx-3"> 1 of 5</span></h5> 
+              <!-- <textarea class="form-control my-4" name="message" id="" cols="30" rows="10"></textarea> -->
+              <div class="overflow-auto">...</div>
+              <div class="overflow-hidden">...</div>
+              <div>
+               <i class="fas fa-doughnut"></i> <p>5/10 writings left</p>
+               <span>Start writing today</span>
+              </div>
+                <button class="btn col-12 my-3 btn-primary">Inject into Project</button>
+              </div>
+            </div>
+
+          </div>
+        </div>  
+        
+
+
+
+
+
+        
+      </main>
+    </body>
+  
+      <div class="row menu-button fixed-bottom" hidden>
+        <button class="btn btn-primary shadow" type="hidden">Click to view Menu <i class="fas fa-chevron-up"></i></button>
+      </div>
+
+
+
+  <script src="{% static '' %}js/bootstrap.bundle.min.js"></script>
+  <script src="{% static '' %}js/script.js"></script>
+</body>
+
+</html>
+{% endblock content %}

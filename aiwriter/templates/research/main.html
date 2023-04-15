@@ -1,0 +1,68 @@
+
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- semantic UI -->
+    <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    
+    <!-- custom css & js -->
+    <script src="{% static '' %}js/semantic.js" defer></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+  <!-- Semantic UI -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+    <title>order a car</title>
+  </head>
+  <body>
+    
+    
+    
+    
+    <form class="mt-5" id='chapter-form'>
+      {% csrf_token %}
+      <div class="ui selection dropdown" id="chapters">
+        <input type="hidden" name="chapters">
+        <i class="dropdown icon"></i>
+        <div class="default text">Choose a chapter</div>
+        <div class="menu" id="chapters-data-box">
+          <!-- Options will be dynamically added here using JavaScript -->
+        </div>
+      </div>
+    
+      <div class="ui selection dropdown" id="topics">
+        <input type="hidden" name="topics">
+        <i class="dropdown icon"></i>
+        <div class="default text" id="topics-text"></div>
+        <div class="menu" id="topics-data-box">
+          <!-- Options will be dynamically added here using JavaScript -->
+        </div>
+      </div>
+    </form>
+    
+    
+    </div>
+  </body>
+
+
+<script>
+
+  
+
+</script>
+
+
+
+</html>

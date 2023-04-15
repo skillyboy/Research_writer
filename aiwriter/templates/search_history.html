@@ -1,0 +1,51 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search List</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Search List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Result</th>
+          <th>Source</th>
+          <th>Relevance</th>
+          <th>Date</th>
+          <th>Action</th>
+          <th>ID</th>
+          <th>Query</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for search in searches %}
+        <tr>
+          <td>{{ search.id }}</td>
+          <td>{{ search.title }}</td>
+          <td>{{ search.source }}</td>
+          <td>{{ search.relevance }}</td>
+          <td>{{ search.date }}</td>
+          <td>{{ search.id }}</td>
+          <td>{{ search.query }}</td>
+          <td>{{ search.created_at }}</td>
+          <td>
+            <a href="{% url 'search_results' search.id %}">Results</a>
+            <a href="{% url 'search_detail' search.id %}">Detail</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+      
+    </table>
+  </div>
+</body>
+</html>

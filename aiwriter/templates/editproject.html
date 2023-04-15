@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'edit_project' %}">
+        {% csrf_token %}
+        
+        <label for="topic">Topic:</label>
+        <input type="text" name="topic" value="{{ project.topic }}" required><br><br>
+        
+        <label for="field">Field:</label>
+        <select name="field">
+            {% for field in fields %}
+                <option value="{{ field.id }}">{{ field.name }}</option>
+            {% endfor %}
+        </select>
+
+        
+        <label for="references">References:</label><br>
+        <textarea name="references" rows="5" cols="80">{{ project.references }}</textarea><br><br>
+
+        <label for="body">Preview Project:</label><br>
+        <textarea name="body" rows="10" cols="80">{{ project.body }}</textarea><br><br>
+        
+        
+        {% for chapter in project.chapters.all %}
+        <div class="chapter-container">
+            <label for="chapter{{ chapter.id }}">Chapter {{ chapter.title }}:</label><br>
+            <textarea name="chapter{{ chapter.id }}" rows="5" cols="80">{{ chapter.content }}</textarea><br><br>
+            <button type="button" class="save-chapter-btn" data-chapter-id="{{ chapter.pk }}">Save Chapter</button>
+        </div>
+        {% endfor %}
+        
+        <button type="submit">Save Project</button>
+      </form>
+
+      <script>
+        $(document).ready(function() {
+        
+            // Add event listener for save chapter button
+            $(document).on('click', '.save-chapter-btn', function() {
+                var chapterId = $(this).data('chapter-id');
+                var chapterContent = $(this).siblings('textarea').val();
+        
+                // Send an Ajax request to save the chapter
+                $.ajax({
+                    url: '/save_chapter/',
+                    method: 'POST',
+                    data: {
+                        'chapter_id': chapterId,
+                        'chapter_content': chapterContent,
+                        'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+                    },
+                    success: function(response) {
+                        // Handle successful response (e.g. show success message)
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error (e.g. show error message)
+                    },
+                });
+            });
+        });
+        
+      </script>
+</body>
+</html>

@@ -1,0 +1,495 @@
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INDEX</title>
+  <link rel="stylesheet" href="{% static '' %}css/style.css">
+  <!-- FONT AWESOME    -->
+  <link rel="stylesheet" href="{% static '' %}css/fontawesome.css">
+</head>
+
+<body>
+  <!-- <h1>New Project</h1> -->
+  <nav class="navbar navbar-expand-lg fixed-top menu " aria-label="Fourth navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#" >ProjectLogo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
+        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Plans & Pricings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Chrome Extensions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">Plagiarism Credits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">API</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">Help Center</a>
+          </li>
+        </ul>
+        <!-- <a href="" class="btn btn-primary"><i class="fas fa-plus"></i> Create Content</a> -->
+        <button  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSignin"><i class="fas fa-plus"></i> Create Content</button>
+        <img src="{% static '' %}img/nodp.png" alt="" width="32" height="32" class="rounded-circle mx-2 me-2">
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row mt-5 ">
+      <div class=" col-md-3 col-lg-2 pt-5 p-3  fixed-top side-menu">
+        <a href="/" class="d-flex align-items-center mt-5 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <span class="fs-5">1,500 Words Left</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link active" aria-current="page">
+             <i class="fas fa-home"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'alltools' %}" class="nav-link link-dark">
+              <i class="fas fa-gear"></i>
+              All Tools
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link link-dark">
+              <i class="fas fa-book"></i>
+              My Content
+            </a>
+          </li>
+          <hr>
+          <li>
+            <a href="article-generator.html" class="nav-link link-dark">
+              <i class="fas fa-scroll"></i>
+              Article Generator
+            </a>
+          </li>
+          <a href="{% url 'collaboration' %}" class="nav-link link-dark">
+            <i class="fas fa-message"></i>
+            Collaborations
+          </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link link-dark">
+              <i class="fas fa-image"></i>
+              All Images
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'search_resources' %}" class="nav-link link-dark">
+              <i class="fas fa-rotate"></i>
+              Search Resources
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{% static '' %}img/nodp.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>User</strong>
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+      
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-section">
+
+        <!-- <div class="container-fluid"> -->
+          <!-- <div class="row top">
+            <div class="col-lg-3 col-md-6 m-2 top-info shadow">
+              <h4>Words Generated</h4>
+              <p>1,250 Words</p>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 top-info shadow">
+              <h4>Items Generated</h4>
+              <p>21 Items</p>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 top-info shadow">
+              <h4>Time Saved</h4>
+              <p>7 Hours</p>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 top-info shadow">
+              <h4>Tools Used</h4>
+              <p>2 / 81</p>
+            </div>
+          </div> -->
+          <div class="row my-3">
+            <h2>My contents</h2>
+            <div class="col-lg-10">
+              <p>These are the most popular tools and a good place to start. Give them a try</p>
+            </div>
+            <div class="col-lg-2">
+              <button class="btn btn-primary">All Tools <i class="fas fa-arrow-right px-2"></i></button>
+            </div>
+          </div>
+          <div class="row bottom">
+            <div class="col-lg-3 col-md-6 m-2 tools shadow">
+              <a href="article-generator.html">
+                <span class="icon">
+                  <i class="fas fa-database "></i>
+                  <i class="fas fa-external-link mx-5"></i>
+                </span>
+                <h4>Article Generator</h4>
+                <p>Turn a title and an outline into a fully SEO-optimized and long article with this AI editor.</p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 tools shadow">
+              <a href="#">
+                <span class="icon">
+                  <i class="fas fa-tools "></i>
+                  <i class="fas fa-external-link mx-5"></i>
+                </span>
+                <h4>Blog post Writer</h4>
+                <p>Turn a title and an outline into a fully SEO-optimized and long article with this AI editor.</p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 tools shadow">
+              <a href="{% url 'new_project' %}">
+                <span class="icon">
+                  <i class="fas fa-pen "></i>
+                  <i class="fas fa-external-link mx-5"></i>
+                </span>
+                <h4>Research Writer</h4>
+                <p>Our research app can help you find the information you need quickly and efficiently, no matter what your field of study or research focus is.</p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 tools shadow">
+              <a href="#">
+                <span class="icon"><i class="fas fa-book-open "></i>
+                  <i class="fas fa-external-link mx-5"></i></span>
+                <h4>Content Writer</h4>
+                <p>Turn a title and an outline into a fully SEO-optimized and long article with this AI editor.</p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 tools shadow">
+              <a href="#">
+                <span class="icon">
+                  <i class="fas fa-file "></i>
+                  <i class="fas fa-external-link mx-5"></i>
+                </span>
+                <h4>Paragraph Generator</h4>
+                <p>Turn a title and an outline into a fully SEO-optimized and long article with this AI editor.</p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 tools shadow">
+              <a href="#">
+                <span class="icon">
+                  <i class="fas fa-clipboard "></i>
+                  <i class="fas fa-external-link mx-5"></i>
+                </span>
+                <h4>Copy Typing</h4>
+                <p>Turn a title and an outline into a fully SEO-optimized and long article with this AI editor.</p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 tools shadow">
+              <a href="#">
+                <span class="icon">
+                  <i class="fas fa-bars "></i>
+                  <i class="fas fa-expand-alt mx-5"></i>
+                </span>
+                <h4>Here</h4>
+                <p>Turn a title and an outline into a fully SEO-optimized and long article with this AI editor.</p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 tools shadow">
+              <a href="#">
+                <span class="icon">
+                  <i class="fas fa-file-pen "></i>
+                  <i class="fas fa-external-link mx-5"></i>
+                </span>
+                <h4>Copy Writing</h4>
+                <p>Turn a title and an outline into a fully SEO-optimized and long article with this AI editor.</p>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-6 m-2 tools shadow">
+              <a href="#">
+                <span class="icon">
+                  <i class="fas fa-users"></i>
+                  <i class="fas fa-external-link mx-5"></i>
+                </span>
+                <h4>Freelance Writing Marketplace</h4>
+                <p>A platform that connects freelance writers and content creators with potential clients, offering new opportunities and projects.</p>
+              </a>
+          </div>
+          <div class="col-lg-3 col-md-6 m-2 tools shadow">
+            <a href="#">
+              <span class="icon">
+                <i class="fas fa-bullhorn"></i>
+                <i class="fas fa-external-link mx-5"></i>
+              </span>
+              <h4>Content Marketing Hub</h4>
+              <p>A centralized platform for businesses and organizations to create, manage, and distribute compelling and engaging content for their target audience.</p>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-6 m-2 tools shadow">
+            <a href="#">
+              <span class="icon">
+                <i class="fas fa-cog"></i>
+                <i class="fas fa-external-link mx-5"></i>
+              </span>
+              <h4>Technical Writing Solutions</h4>
+              <p>Professional technical writing services for individuals and organizations to create clear and concise technical documentation.</p>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-6 m-2 tools shadow">
+          <a href="#">
+            <span class="icon">
+              <i class="fas fa-pen"></i>
+              <i class="fas fa-external-link mx-5"></i>
+            </span>
+            <h4>Creative Writing Tools</h4>
+            <p>Online tools and resources for writers, authors, and creative individuals to enhance their creativity and improve their writing.</p>
+          </a>
+      </div>
+      <div class="col-lg-3 col-md-6 m-2 tools shadow">
+        <a href="#">
+          <span class="icon">
+            <i class="fas fa-building"></i>
+            <i class="fas fa-external-link mx-5"></i>
+          </span>
+          <h4>Professional Writing</h4>
+          <p>Expert writing services for businesses, organizations, and startups to create professional content for their websites, marketing materials, and more.</p>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 m-2 tools shadow">
+        <a href="#">
+          <span class="icon">
+            <i class="fas fa-graduation-cap"></i>
+            <i class="fas fa-external-link mx-5"></i>
+          </span>
+          <h4>Academic Writing Help</h4>
+          <p>Assistance for students and scholars in academic writing to improve their writing skills and grades.</p>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-md-6 m-2 tools shadow">
+        <a href="#">
+          <span class="icon">
+            <i class="fas fa-graduation-cap"></i>
+            <i class="fas fa-external-link mx-5"></i>
+          </span>
+          <h4>Educational Platform</h4>
+          <p>Provides resources, tools, and support to high schools, colleges, and universities for efficient and effective learning.</p>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 m-2 tools shadow">
+        <a href="#">
+          <span class="icon">
+            <i class="fas fa-pencil-alt"></i>
+            <i class="fas fa-external-link mx-5"></i>
+          </span>
+          <h4>Academic Writing Assistance</h4>
+          <p>Offers guidance, editing, and proofreading services to students and scholars for their academic writing projects.</p>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 m-2 tools shadow">
+        <a href="#">
+          <span class="icon">
+            <i class="fas fa-building"></i>
+            <i class="fas fa-external-link mx-5"></i>
+          </span>
+          <h4>Business Writing Solutions</h4>
+          <p>Provides professional writing services, such as business plans, proposals, and reports, to businesses, organizations, and startups.</p>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 m-2 tools shadow">
+        <a href="#">
+          <span class="icon">
+            <i class="fas fa-feather-alt"></i>
+            <i class="fas fa-external-link mx-5"></i>
+          </span>
+          <h4>Creative Writing Support</h4>
+          <p>Offers writing prompts, feedback, and workshops to writers, authors, and creative individuals for their writing projects.</p>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 m-2 tools shadow">
+        <a href="#">
+          <span class="icon">
+            <i class="fas fa-cog"></i>
+            <i class="fas fa-external-link mx-5"></i>
+          </span>
+          <h4>Technical Writing Services</h4>
+          <p>Provides technical writing services, such as manuals, guides, and documentation, to individuals and organizations in various industries.</p>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 m-2 tools shadow">
+        <a href="#">
+          <span class="icon">
+            <i class="fas fa-bullhorn"></i>
+            <i class="fas fa-external-link mx-5"></i>
+          </span>
+          <h4>Content Marketing Solutions</h4>
+          <p>Helps businesses and organizations create engaging and effective content for their marketing campaigns and strategies.</p>
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-6 m-2 tools shadow">
+        <a href="#">
+          <span class="icon">
+            <i class="fas fa-store"></i>
+            <i class="fas fa-external-link mx-5"></i>
+          </span>
+          <h4>Business and Entrepreneur Platform</h4>
+          <p>Provides a platform for small businesses and startups to create and publish their content and reach their target audience.</p>
+        </a>
+      </div>
+
+      <!-- <section id="hero">
+        <h2>Streamline Your Research Process</h2>
+        <p>Our platform offers customizable research templates, integration with project management tools, and more.</p>
+        <a href="#features" class="btn">Learn More</a>
+      </section>
+      
+      <section id="target_markets">
+        <h2>Target Markets</h2>
+        <ul>
+          <li>
+            <h3>Educational Institutions and Students</h3>
+            <p>This could include high schools, colleges, and universities that need a platform for students to submit their assignments and projects.</p>
+          </li>
+          <li>
+            <h3>Academic Writing</h3>
+            <p>This niche can cater to students and scholars who need help in writing academic papers, essays, and dissertations.</p>
+          </li>
+          <li>
+            <h3>Business Writing</h3>
+            <p>This niche can cater to businesses, organizations, and startups that need help in writing professional documents, reports, and proposals.</p>
+          </li>
+          <li>
+            <h3>Creative Writing</h3>
+            <p>This niche can cater to writers, authors, and creative individuals who need help in writing creative fiction, poetry, and other forms of creative writing.</p>
+          </li>
+          <li>
+            <h3>Technical Writing</h3>
+            <p>This niche can cater to individuals and organizations who need help in writing technical manuals, instructional materials, and other forms of technical writing.</p>
+          </li>
+          <li>
+            <h3>Content Marketing</h3>
+            <p>This niche can cater to businesses and organizations who need help in creating compelling and engaging content for their marketing and branding efforts.</p>
+          </li>
+          <li>
+            <h3>Businesses and Entrepreneurs</h3>
+            <p>This could include small businesses and startups that need a platform to produce high-quality content for their websites, social media, and other marketing materials.</p>
+          </li>
+          <li>
+            <h3>Freelance Writers and Content Creators</h3>
+            <p>This could include individuals who need a platform to find new writing opportunities and connect with clients who need their services.</p>
+          </li>
+          <li>
+            <h3>Government and Non-profit Organizations</h3>
+            <p>This could include government agencies and non-profit organizations that need a platform to produce high-quality content for their websites, reports, and other materials.</p>
+          </li>
+        </ul>
+      </section> -->
+    
+    
+    
+
+        <div class="row menu-button fixed-bottom">
+           <button class="btn btn-primary shadow ">Click to view Menu <i class="fas fa-chevron-up"></i></button>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+
+
+<!-- MODAL SECTION  -->
+
+<div class="modal py-5" tabindex="-1" id="modalSignin">
+  <div class="modal-dialog ">
+    <div class="modal-content mt-5">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Project</h5>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body">
+      <form class="add-category-modal">
+            <div class="form-floating text-center">
+                <div class="error-txtmodal"></div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="category">Name</label>
+              <input type="text" class="form-control p-3 mt-2" name="category" placeholder="Project Name">
+            </div>
+            <div class="form-group mb-3">
+              <label for="category">Domain name (optional)</label>
+              <input type="text" class="form-control p-3 mt-2" name="category" placeholder="google.com">
+            </div>
+            <div class="row m-auto">
+              <div class="col-sm-6">
+                <button class="w-100 mb-2 btn btn-lg rounded-3 btn-warning add-category-btn" data-bs-dismiss="modal" aria-label="Close"  type="submit" >Cancel</button>
+              </div>
+              <div class="col-sm-6">
+                <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary add-category-btn"  type="submit" >Save</button>
+              </div>
+            </div>
+          </form>
+      </div>
+    </div>
+    <p><h3>Welcome to our AI-powered writing tools page! We offer a variety of tools to help you create high-quality content quickly and efficiently. Whether you're a student, a business owner, or a professional writer, our tools can help you take your writing to the next level.
+
+      Our article generator tool is perfect for those who need to create long-form content quickly. Simply input your title and outline, and let our AI do the rest. Our tool will generate a fully SEO-optimized article that's ready to publish.
+      
+      If you need help with blog post writing, our AI-powered blog post writer tool is here to help. It will help you create engaging blog posts that are optimized for search engines, so you can attract more readers and grow your audience.
+      
+      Our research writer tool is perfect for students and professionals who need to write research papers. It will help you organize your thoughts and ideas, and create a well-structured paper that's ready to submit.
+      
+      For those who need to create content quickly and efficiently, our content writer tool is the perfect solution. It will help you create high-quality content in minutes, so you can focus on other important tasks.
+      
+      Our paragraph generator tool is perfect for those who need to create content quickly and efficiently. Simply input your title and outline, and our AI will generate a fully SEO-optimized paragraph that's ready to use.
+      
+      If you need help with copy typing, our copy typing tool is here to help. It will help you type faster and more accurately, so you can get your work done more quickly.
+      
+      Our "Here" tool is perfect for those who need to create engaging content quickly. It will help you create eye-catching headlines, so you can attract more readers and grow your audience.
+      
+      Finally, our copywriting tool is perfect for those who need to create compelling copy for their business. It will help you create copy that's optimized for conversions, so you can attract more customers and grow your business.
+      
+      So what are you waiting for? Try out our AI-powered writing tools today and take your writing to the next level!
+      
+      
+      
+      </h3></p>
+  </div>
+</div>
+
+
+  <script src="{% static '' %}js/bootstrap.bundle.min.js"></script>
+  <script src="{% static '' %}js/script.js"></script>
+
+  
+  
+</body>
+
+</html>
+{% endblock content %}

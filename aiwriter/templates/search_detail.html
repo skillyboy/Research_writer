@@ -1,0 +1,15 @@
+
+{% block content %}
+  <h2>Search Details</h2>
+  <p>Query: {{ search.query }}</p>
+  <p>Date: {{ search.created_at }}</p>
+  <hr>
+  <h3>Results:</h3>
+  <ul>
+    {% for result in search.results.all %}
+      <li>{{ result.title }}</li>
+    {% endfor %}
+  </ul>
+  <hr>
+  <a href="{% url 'search_history' %}">Back to search list</a>
+{% endblock %}

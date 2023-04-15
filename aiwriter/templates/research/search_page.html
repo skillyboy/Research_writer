@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Editor</title>
+
+    <link rel="stylesheet" href="{% static '' %}css/style.css">
+    <!-- FONT AWESOME    -->
+    <link rel="stylesheet" href="{% static '' %}css/fontawesome.css">
+</head>
+{% if messages %}
+    {% for item in messages %}
+      <div style="color: white; padding:2rem; background:#35B7FF;font-size:1rem; font-weight:700;text-align:center;">{{item}}</div>
+    {% endfor %}
+{% endif %}
+<body>
+    <br>
+    <nav class="navbar fixed-top menu" aria-label="Fifth navbar example">
+        <div class="container-fluid">
+            <a href="index.html"><button class="btn btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Go back</button></a>
+            <!-- <span class="auto-w">Auto-Writing &quest;</span> -->
+            <a href="#" class="navbar-brand fw-bold">ProjectLogo</a>
+
+            <span class="rounded-pill"><i class="fas fa-rotate"></i> 200 </span>
+          
+            <button 
+                class="navbar-toggler" 
+                type="button" data-bs-toggle="collapse"
+                data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" 
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+ 
+ {% block content %}
+    <div class="container-fluid">
+        <!-- <div class="row  "> -->
+            <!-- SIDEBAR SECTION  -->
+            <div class="col-lg-2 pt-5 p-3   sidebar-smart  collapse navbar-collapse shadow" id="sidebarMenu">
+                <span>All Tools</span>
+                <input type="text" class="form-control mt-4 search-t" placeholder="Search tool...">
+
+                <ul class="nav nav-pills flex-column mb-auto ">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link " aria-current="page">
+                            <i class="fas fa-home"></i>
+                            <span> Dashboard </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-gear"></i>
+                            <span>All Tools</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-book"></i>
+                            <span>My Content</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="article-generator.html" class="nav-link link-dark">
+                            <i class="fas fa-scroll"></i>
+                            <span>Article Generator</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-message"></i>
+                            <span>Chat</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                          <i class="fas fa-file-pen"></i>
+                          <span>Smart Editor</span> 
+                        </a>
+                      </li>
+                    <li>
+                        <a href="search-page.html" class="nav-link link-dark">
+                            <i class="fas fa-rotate"></i>
+                            <span>Search Resources</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-book"></i>
+                            <span>My Content</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="article-generator.html" class="nav-link link-dark">
+                            <i class="fas fa-scroll"></i>
+                            <span>Article Generator</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-message"></i>
+                            <span>Chat</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <i class="fas fa-image"></i>
+                            <span>All Images</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="search-page.html" class="nav-link link-dark">
+                            <i class="fas fa-rotate"></i>
+                            <span>Search Resources</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <hr>
+                <img src="./img/nodp.png" alt="" width="32" height="32" class="rounded-circle ">
+            </div>
+            <br><br><br>
+
+            <nav class="navbar navbar-expand-lg fixed-top menu" aria-label="Fourth navbar example">
+              <div class="container-fluid ">
+                <a class="navbar-brand fw-bold" href="#" >ProjectLogo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
+                  aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+          
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                  <div class=" me-auto search-sect" >
+                    <form method="POST" action="{% url 'perform_search' %}">
+                      {% csrf_token %}
+                        <input type="search" value="{{query}}"  name="query" class="form-control rounded-pill" id="searchbar" placeholder="Search" aria-label="Search">
+                        <button>Search</button>
+                        <button type="button" class="close "><i class="fas fa-close "></i></button> 
+                        <button type="button" type="submit" class="search-i ml-3"><i class="fas fa-search "></i></button> 
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </nav>
+            <!-- MAIN MENU SECTION  -->
+            <main class="col-lg-12 main-smart-section bg-light" style="color: #2c3e50" > 
+              
+              <div class="row px-3 " >
+                <div class="col-lg-8">
+                  <select name="note_or_chat" id="note_or_chat" class="form-select mb-2 text-center">
+                    <option value="note" >Google Scholar</option>
+                    <option value="note" >Reaserach Labb</option>
+                    <option value="note" >Med Pub</option>
+                  </select>
+                </div>
+                <div class="col-lg-8 col-md-8 col editor-section shadow" style="height: 600px; overflow-y: scroll;">
+                  <div class="col-lg-12 search-result shadow">
+                    <a href="">How to write Better: 15 ways to Improve your writing skills | Write</a>
+                    <p>Writer.com > blog > how-to-write-better place to start. Give them a try</p>
+                    <p>One of the best, passive ways of becoming a better writer is to need a book (Stephen king's work
+                      makes for great binge reading). Not int books? Long-form business writings, graphic novels, or short...</p>
+                      <button class="btn btn-primary">View</button>
+                      <button class="btn btn-primary">Read summary</button>
+                      <button class="btn btn-primary">Remove</button>
+                      <button class="btn btn-primary">Added</button>
+                  </div>
+                  <br>
+
+                  {% for result in results %}
+                  <div class="col-lg-12 search-result shadow">
+                    <a href="{{ result.url }}">{{ result.link }}</a>
+                    <p>Writer.com > blog > how-to-write-better place to start. Give them a try</p>
+                    <p>One of the best, passive ways of becoming a better writer is to need a book (Stephen king's work
+                      makes for great binge reading). Not int books? Long-form business writings, graphic novels, or short...</p>
+                      <button class="btn btn-primary">View</button>
+                      <button class="btn btn-primary">Read summary</button>
+                      <button class="btn btn-primary">Remove</button>
+                      <button class="btn btn-primary">Added</button>
+                  </div>
+                  <br>  
+                  {% endfor %}
+
+
+      
+                </div>
+                
+                
+
+                
+                <!-- Side colunm -->
+                <div class="col-lg-4 col-md-4 ">
+                    <!-- <select name="note_or_chat" id="note_or_chat" class="form-select mb-2">
+                        <option value="chat" selected>Chat</option>
+                        <option value="note" title="Add content to help AI streamline research">Google Scholar</option>
+                        <option value="note" title="Add content to help AI streamline research">Reaserach Lab</option>
+                        <option value="note" title="Add content to help AI streamline research">Med Pub</option>
+                    </select> -->
+                    <hr>
+                    <div class="row text-center mt-4 fs-4">
+                      <div class="col-6">
+                          <h6>Google Scholar</h6>
+                          <p>1</p>
+                      </div>
+                      <div class="col-6">
+                          <h6>Reaserach Lab</h6>
+                          <p>1</p>
+                      </div>
+                  </div>
+                  <div class="row text-center my-2 fs-4">
+                      <div class="col-6">
+                          <h6>Med Pub</h6>
+                          <p>0</p>
+                      </div>
+                      <div class="col-6">
+                          <h6>WORDS</h6>
+                          <p>0</p>
+                      </div>
+                  </div>
+
+                    <div id="chat-container">
+                        <div id="chat-box" class="d-none">
+
+                            <div id="note-box" class="d-none note-box">
+                                <div class="accordion mb-4" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Keywords
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <input type="text" class="form-control my-2" placeholder="Add keyword">
+                                                <button class="btn  btn-primary mb-2 w-100">Calculate SEO Score</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                Pliagiarism Checker
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                A plagiarism rate below 5% is really good, between 5 and 10% is considered to be
+                                                reasonable.
+                                                <button class="btn  btn-primary mb-2 w-100">Check Pliagiarism</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                Content Analysis
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <strong>This is the third item's accordion body.</strong> It is hidden HTML transition
+                                                does limit overflow.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <button type="submit" name="save_conversation" class="btn btn-primary w-100">Save Search</button>
+                    </div>
+                    
+                    
+                    
+
+
+    
+                      <div class="accordion mb-4" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Keywords
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <input type="text" class="form-control my-2" placeholder="Add keyword">
+                                    <button class="btn  btn-primary mb-2 w-100">Calculate SEO Score</button>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Pliagiarism Checker
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    A plagiarism rate below 5% is really good, between 5 and 10% is considered to be
+                                    reasonable.
+                                    <button class="btn  btn-primary mb-2 w-100">Check Pliagiarism</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Content Analysis
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the third item's accordion body.</strong> It is hidden HTML transition
+                                    does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+              </div>
+            </main>
+        <!-- </div> -->
+    </div>
+
+    <script src="./assets/ckeditor/ckeditor.js"></script>
+    <script>
+        // CKEDITOR.replace('researchEditor');
+    </script>
+    <script src="{% static '' %}js/bootstrap.bundle.min.js"></script>
+    <script src="{% static '' %}js/script.js"></script>
+</body>
+{% endblock content %}
+
+</html>

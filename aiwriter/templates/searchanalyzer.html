@@ -1,0 +1,93 @@
+{% comment %} <!-- results.html --> {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Results - {{ search.keyword }}</title>
+    </head>
+    <body>
+        <h1>Results for: {{ search.keyword }}</h1>
+        <h2>Results with PDF</h2>
+        <ul>
+            
+            {% for result in results_with_pdf %}
+            <!-- <li><a href="{{ result.pdf_file.url }}">{{ result.title }}</a></li> -->
+            {% endfor %}
+        </ul>
+        <h2>Other Results</h2>
+        <ul>
+            {% for result in other_results %}
+            <li><a href="{{ result.url }}">{{ result.title }}</a></li>
+            {% endfor %}
+        </ul>
+
+
+        <body>
+            {% if results_with_pdf %}
+              <h1>{{ title }}</h1>
+              <a href="{{ pdf_file.url }}" target="_blank">Download PDF</a>
+              <h2>PDF Content</h2>
+              <div>{{ pdf_content|safe }}</div>
+            {% else %}
+              <h1>No PDF file found</h1>
+            {% endif %}
+          </body>
+
+
+
+
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Search Results</title>
+          </head>
+          <body>
+            <header>
+              <h1>Search Results for "{{ search.query }}"</h1>
+              <form method="GET">
+                <label for="filter">Filter by:</label>
+                <select id="filter" name="filter_by">
+                  <option value="relevance" {% if filter_by == 'relevance' %}selected{% endif %}>Relevance</option>
+                  <option value="date" {% if filter_by == 'date' %}selected{% endif %}>Date</option>
+                  <option value="source" {% if filter_by == 'source' %}selected{% endif %}>Source</option>
+                </select>
+                <button type="submit">Go</button>
+              </form>
+            </header>
+            <main>
+              <ul>
+                {% for result in results %}
+                <li>
+                  <h2>{{ result.title }}</h2>
+                  <p>{{ result.summary }}</p>
+                  <p><a href="{{ result.url }}" target="_blank">Read more</a></p>
+                  <p>Source: {{ result.source }}</p>
+                </li>
+                {% endfor %}
+              </ul>
+            </main>
+            <footer>
+              <div class="pagination">
+                <span class="page-numbers">Page {{ results.number }} of {{ results.paginator.num_pages }}</span>
+                {% if results.has_previous %}
+                <a class="previous" href="?page={{ results.previous_page_number }}&filter_by={{ filter_by }}">Previous</a>
+                {% endif %}
+                {% if results.has_next %}
+                <a class="next" href="?page={{ results.next_page_number }}&filter_by={{ filter_by }}">Next</a>
+                {% endif %}
+              </div>
+            </footer>
+          </body>
+        </html>
+        
+
+
+
+
+
+
+    </body>
+</html>

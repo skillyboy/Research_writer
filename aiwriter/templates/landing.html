@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Research App</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- Fontawesome CSS -->
+    <!-- FONT AWESOME    -->
+  <link rel="stylesheet" href="{% static '' %}css/fontawesome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-1/72rV/WpyEeN03hHfWzB25+uN7JzQGXyGJ+0vUc36lrTvxTQ+MCcE4s4JztLm/wmKdApxMgXq3N/FpCJrsZwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <style>
+
+    
+    section.features {
+      background-color: #ecf0f1;
+    }
+    
+    .btn-primary {
+      background-color: #3498db;
+      border-color: #3498db;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2980b9;
+      border-color: #2980b9;
+    }
+    
+    .card {
+      background-color: #fff;
+      border: 1px solid #ecf0f1;
+    }
+    
+    .card-title {
+      color: #2c3e50;
+    }
+    
+    .card-text {
+      color: #555;
+    }
+    
+    .text-danger {
+      color: #e74c3c;
+    }
+    
+    body {
+      background-color: #2c3e50;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    main {
+      background-color: #ecf0f1;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h1, h2, h3 {
+      color: #3498db;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .error {
+      color: #e74c3c;
+    }
+  </style>
+
+</head>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <a class="navbar-brand text-white" href="#">Research App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+{% block content %}
+
+<body>
+  <!-- Header -->
+  <header class="jumbotron jumbotron-fluid" style="color:#3498db;">
+    <div class="container">
+      <h1 class="display-4">Kaska Tech</h1>
+      <!-- <p class="lead">A platform for researchers and academics to collaborate, share ideas and research findings, and publish research papers.</p> -->
+      <p class="lead">Our application provides assistance and helps manage and organize all types of written work, including books, articles, research papers, etc. allowing you to organize and quickly find the information you need, reducing the amount of time you need to spend searching for information..</p>
+      
+      <hr class="my-4">
+
+      <p>Join our community today and take your research to the next level.</p>
+      <a class="btn btn-primary btn-lg" href="#" role="button">Sign Up</a>
+
+    </div>
+  </header>
+  
+
+      <!-- Features section -->
+      <div style="background-color:#3498db;padding-top:30px;padding-bottom:30px;" >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card" style="border:none;">
+                <div class="card-body">
+                  <i class="fas fa-users fa-4x mb-3" style="color:#3498db;"></i>
+                  <h4 class="card-title" style="color:#000000;">Collaboration</h4>
+                  <p class="card-text" style="color:#7F7F7F;">Connect with other researchers, form teams, and collaborate on research projects.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card" style="border:none;">
+                <div class="card-body">
+                  <i class="fas fa-file-alt fa-4x mb-3" style="color:#3498db;"></i>
+                  <h4 class="card-title" style="color:#000000;">Research Templates</h4>
+                  <p class="card-text" style="color:#7F7F7F;">Customizable research templates and questionnaires to streamline research process.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card" style="border:none;">
+                <div class="card-body">
+                  <i class="fas fa-check fa-4x mb-3" style="color:#3498db;"></i>
+                  <h4 class="card-title" style="color:#000000;">Plagiarism Checker</h4>
+                  <p class="card-text" style="color:#7F7F7F;">An AI-powered plagiarism checker to ensure original and unique content.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{% static '' %}img/readinai.jpg" alt="hero image" class="img-fluid" height="500rem" >
+      </div> 
+      <div class="col-md-6">
+        <h1 class="hero__title" style="color:#3498db;">Manuscript Manager</h1>
+        <!-- <p class="hero__text" style="color:3498db;">Our application provides assistance and helps manage all types of written work, including books, articles, research papers, etc. allowing you to organize and quickly find the information you need, reducing the amount of time you need to spend searching for information.</p> -->
+        <p style="color:rgb(220, 242, 245);" class="mt-4">The tool is designed to assist final year students, students working on assignments, and content writers by providing suggestions and assistance with the research process. It can help users quickly find information, generate content ideas, and provide suggestions for writing structure, language translation, and word choices.</p>
+        <a href="{% url 'researchesview' %}" class="btn btn-primary btn-lg" style="background-color:#3498db;border:none;">Get Started</a>
+      </div>
+    </div>
+  </div>
+  <br><hr><br>
+  <!-- <div class="container" style="background-color: #2c3e50;">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="hero__title" style="color:#3498db;">Manuscript Manager</h1>
+        <p style="color:rgb(220, 242, 245);" class="mt-4">The tool is designed to assist final year students, students working on assignments, and content writers by providing suggestions and assistance with the research process. It can help users quickly find information, generate content ideas, and provide suggestions for writing structure, language translation, and word choices.</p>
+        <a href="{% url 'researchesview' %}" class="btn btn-primary btn-lg" style="background-color:#3498db;border:none;">Get Started</a>
+      </div>
+      <div class="col-md-6">
+        <img src="{% static '' %}img/readinai.jpg" alt="hero image" class="img-fluid" height="500rem" >
+      </div> 
+    </div>
+  </div> -->
+
+
+
+  <!-- <div style="background-color:#3498db;;padding-top:30px;padding-bottom:30px;">
+    <h4 class="text-center"><b>Other Tools</b> </h4>
+    <div style="background-color:#F7F7F7;padding-top:30px;padding-bottom:30px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card" style="border:none;">
+              <div class="card-body">
+                <i class="fas fa-database fa-4x mb-3" style="color:#3498db;"></i>
+                <i class="fas fa-external-link mx-5"></i>
+                <h4 class="card-title" style="color:#000000;">Article Generator</h4>
+                <p class="card-text" style="color:#7F7F7F;">Turn a title and an outline into a fully SEO-optimized and long article with this AI editor</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card" style="border:none;">
+              <div class="card-body">
+                <i class="fas fa-tools fa-4x mb-3" style="color:#3498db;"></i>
+                <i class="fas fa-external-link mx-5"></i>
+                <h4 class="card-title" style="color:#000000;">Blog Post Writer</h4>
+                <p class="card-text" style="color:#7F7F7F;">Turn a title and an outline into a fully SEO-optimized and long article with this AI editor</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card" style="border:none;">
+              <div class="card-body">
+                <i class="fas fa-pen fa-4x mb-3" style="color:#3498db;"></i>
+                <i class="fas fa-external-link mx-5"></i>
+                <h4 class="card-title" style="color:#000000;">Research Writer</h4>
+                <p class="card-text" style="color:#7F7F7F;">Our research app can help you find the information you need quickly and efficiently, no matter what your field of study or research focus is</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card" style="border:none;">
+              <div class="card-body">
+                <i class="fas fa-book-open fa-4x mb-3" style="color:#3498db;"></i>
+                <i class="fas fa-external-link mx-5"></i>
+                <h4 class="card-title" style="color:#000000;">Content Writer</h4>
+                <p class="card-text" style="color:#7F7F7F;">Turn a title and an outline into a fully SEO-optimized and long article with this AI editor</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card" style="border:none;">
+              <div class="card-body">
+                <i class="fas fa-file fa-4x mb-3" style="color:#3498db;"></i>
+                <i class="fas fa-external-link mx-5"></i>
+                <h4 class="card-title" style="color:#000000;">Youtube to AI</h4>
+                <p class="card-text" style="color:#7F7F7F;">Turn a title and an outline into a fully SEO-optimized and long article with this AI editor</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card" style="border:none;">
+              <div class="card-body">
+                <i class="fas fa-clipboard fa-4x mb-3" style="color:#3498db;"></i>
+                <i class="fas fa-external-link mx-5"></i>
+                <h4 class="card-title" style="color:#000000;">Copy Typing</h4>
+                <p class="card-text" style="color:#7F7F7F;">Turn a title and an outline into a fully SEO-optimized and long article with this AI editor.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card" style="border:none;">
+              <div class="card-body">
+                <i class="fas fa-bars fa-4x mb-3" style="color:#3498db;"></i>
+                <i class="fas fa-expand-alt mx-5"></i>
+                <h4 class="card-title" style="color:#000000;">Here</h4>
+                <p class="card-text" style="color:#7F7F7F;">Turn a title and an outline into a fully SEO-optimized and long article with this AI editor.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card" style="border:none;">
+              <div class="card-body">
+                <i class="fas fa-file-pen fa-4x mb-3" style="color:#3498db;"></i>
+                <i class="fas fa-external-link mx-5"></i>
+                <h4 class="card-title" style="color:#000000;">Copy Writing</h4>
+                <p class="card-text" style="color:#7F7F7F;">Turn a title and an outline into a fully SEO-optimized and long article with this AI editor.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card" style="border:none;">
+              <div class="card-body">
+                <i class="fas fa-users fa-4x mb-3" style="color:#3498db;"></i>
+                <i class="fas fa-external-link mx-5"></i>
+                <h4 class="card-title" style="color:#000000;">Freelance Writing Marketplace</h4>
+                <p class="card-text" style="color:#7F7F7F;">A platform that connects freelance writers and content creators with potential clients, offering new opportunities and projects.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card" style="border:none;">
+              <div class="card-body">
+                <i class="fas fa-bullhorn fa-4x mb-3" style="color:#3498db;"></i>
+                <i class="fas fa-external-link mx-5"></i>
+                <h4 class="card-title" style="color:#000000;">Content Marketing Hub</h4>
+                <p class="card-text" style="color:#7F7F7F;">A centralized platform for businesses and organizations to create, manage, and distribute compelling and engaging content for their target audience.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
+
+
+</body>
+<footer>
+  <div class="footer-container row" style="background-color:#3498db;padding-top:30px;padding-bottom:30px;" >
+    <div class="footer-column cols-lg-12">
+      <h3>About Us</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut odio euismod, malesuada magna vel, tincidunt tellus. Nunc ultrices metus vel tincidunt ultricies. </p>
+    </div>
+    <div class="footer-column cols-lg-12">
+      <h3>Our Services</h3>
+      <ul>
+        <li><a href="#">Service 1</a></li>
+        <li><a href="#">Service 2</a></li>
+        <li><a href="#">Service 3</a></li>
+        <li><a href="#">Service 4</a></li>
+      </ul>
+    </div>
+    <div class="footer-column cols-lg-12">
+      <h3>Contact Us</h3>
+      <ul>
+        <li><i class="fas fa-map-marker-alt"></i> 123 Main Street, Anytown USA</li>
+        <li><i class="fas fa-phone"></i> 555-123-4567</li>
+        <li><i class="fas fa-envelope"></i> info@yourwebsite.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom-footer">
+    <p>&copy; 2023 Your Website. All Rights Reserved.</p>
+    <ul>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Service</a></li>
+      <li><a href="#">Accessibility</a></li>
+    </ul>
+  </div>
+</footer>
+
+
+<script src="{% static '' %}js/bootstrap.bundle.min.js"></script>
+<script src="{% static '' %}js/script.js"></script>
+
+</html>
+{% endblock content %}

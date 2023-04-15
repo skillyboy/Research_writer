@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title>My Django App</title>
+  <title>My Django App</title>
+  <!-- Load Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <style>
+    /* Style for the header */
+    header {
+      background-color: #008080;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    /* Style for the toggle button */
+.toggle-button {
+  background-color: #008080;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: #006666;
+}
+
+/* Style for the iframe container */
+#iframe-container {
+  margin-bottom: 30px;
+}
+
+/* Style for the text area container */
+.text-area-container {
+  display: none;
+}
+body {
+  background-color: #f7f7f7;
+}
+
+h1 {
+  font-size: 48px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  color: #2e2e2e;
+  text-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+  font-size: 36px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  color: #2e2e2e;
+  text-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+#iframe-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  margin: 30px auto;
+  max-width: 1200px;
+  padding: 20px;
+  text-align: center;
+}
+
+#my-iframe {
+  width: 100%;
+  height: 900px;
+  border: none;
+}
+
+.text-area-container {
+  display: none;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.toggle-button {
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  color: #2e2e2e;
+  cursor: pointer;
+  font-size: 24px;
+  margin: 30px auto;
+  padding: 10px 20px;
+  text-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.toggle-button:hover {
+  background-color: #2e2e2e;
+  color: #fff;
+}
+  </style>
+
+
+  <!-- Load Font Awesome CSS -->
+  <script src="https://cdn.tiny.cloud/1/grjue6zgt2kiw5ryvt4z271o7w52oofnhegmxvtgpgwo2hho/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="https://unpkg.com/@grammarly/editor-sdk?clientId=client_8nBaVqWaRFzEMWPoWXhtEd"></script>
+</head>
+<body>
+Add contents from here
+
+
+  <!-- Add a button to toggle between the iframe and text area -->
+  <button onclick="toggleView()" class="toggle-button"><i class="fas fa-exchange-alt"></i>Toggle View</button>
+  
+  <!-- Add a container div for the iframe -->
+  <div id="iframe-container">
+    <h2>Google Scholar</h2>
+    <iframe id="my-iframe" src="https://www.indianjournals.com/ijor.aspx?target=ijor:ija&volume=57&issue=3s&article=009" style="width:100%;height:900px;"></iframe>
+    <!-- <iframe id="my-iframe" src="{{ url }}" style="width:100%;height:500px;"></iframe> -->
+  </div>
+  
+  <!-- Add a container div for the text area -->
+  <div class="text-area-container" id="text-area-container">
+    <h2>Copy and Paste Article Here</h2>
+        <grammarly-editor-plugin
+            config.documentDialect="british"
+            config.suggestionCategories.oxfordComma="on">
+                <textarea id="export" name="body">
+                    {{request.session.body}}
+                </textarea>
+        </grammarly-editor-plugin>
+  </div>
+  
+  <script>
+    // Initialize the current view to the iframe
+    var currentView = 'iframe';
+    
+    function toggleView() {
+        var iframeContainer = document.getElementById('iframe-container');
+        var textAreaContainer = document.getElementById('text-area-container');
+        var iframe = document.getElementById('my-iframe');
+        var textarea = document.getElementById('my-textarea');
+      
+        if (iframeContainer.style.display !== 'none') {
+          // Hide the iframe container and show the text area container
+          iframeContainer.style.display = 'none';
+          textAreaContainer.style.display = 'block';
+      
+          // Set the text area value to the contents of the iframe
+          textarea.value = iframe.contentDocument.documentElement.outerHTML;
+        } else {
+          // Show the iframe container and hide the text area container
+          iframeContainer.style.display = 'block';
+          textAreaContainer.style.display = 'none';
+      
+          // Reload the iframe to clear any previously loaded content
+          iframe.src = iframe.src;
+        }
+    }
+      
+  </script>
+  <script>
+      tinymce.init({
+  
+          selector: 'textarea#export',
+          toolbar: 'export pagebreak | formatselect fontselect fontsizeselect bold italic underline strikethrough forecolor backcolor subscript superscript | alignleft aligncenter alignright alignjustify indent outdent rtl ltr | bullist numlist checklist | emoticons image table link hr charmap',
+          height: 500,
+          toolbar_mode: 'sliding',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+          
+          toolbar: "undo redo print spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image addcomment showcomments  | alignleft aligncenter alignright alignjustify lineheight | checklist bullist numlist indent outdent | removeformat",
+          height: '600px',
+          toolbar_sticky: true,
+          icons: 'thin',
+          autosave_restore_when_empty: true,
+          tinycomments_mode: 'embedded',
+          tinycomments_author: 'john.doe', 
+          
+      });
+  </script>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
